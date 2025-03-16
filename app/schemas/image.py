@@ -7,7 +7,7 @@ class ImageResponse(ImageBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ImageCreate(ImageBase):
     pass
