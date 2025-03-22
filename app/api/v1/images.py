@@ -35,24 +35,24 @@ def read_image(image_id: int, db: Session = Depends(get_db)):
 
 
 # 添加图片
-@router.post("/images", response_model=ImageResponse)
-def add_image(image: ImageCreate, db: Session = Depends(get_db)):
-    return create_image(db, image.url)
-
-
-# 更新图片链接
-@router.put("/images/{image_id}", response_model=ImageResponse)
-def modify_image(image_id: int, image_update: ImageUpdate, db: Session = Depends(get_db)):
-    updated_image = update_image(db, image_id, image_update.url)
-    if not updated_image:
-        raise HTTPException(status_code=404, detail="图片未找到")
-    return updated_image
-
-
-# 删除图片
-@router.delete("/images/{image_id}")
-def remove_image(image_id: int, db: Session = Depends(get_db)):
-    success = delete_image(db, image_id)
-    if not success:
-        raise HTTPException(status_code=404, detail="图片未找到")
-    return {"message": "图片删除成功"}
+# @router.post("/images", response_model=ImageResponse)
+# def add_image(image: ImageCreate, db: Session = Depends(get_db)):
+#     return create_image(db, image.url)
+#
+#
+# # 更新图片链接
+# @router.put("/images/{image_id}", response_model=ImageResponse)
+# def modify_image(image_id: int, image_update: ImageUpdate, db: Session = Depends(get_db)):
+#     updated_image = update_image(db, image_id, image_update.url)
+#     if not updated_image:
+#         raise HTTPException(status_code=404, detail="图片未找到")
+#     return updated_image
+#
+#
+# # 删除图片
+# @router.delete("/images/{image_id}")
+# def remove_image(image_id: int, db: Session = Depends(get_db)):
+#     success = delete_image(db, image_id)
+#     if not success:
+#         raise HTTPException(status_code=404, detail="图片未找到")
+#     return {"message": "图片删除成功"}
